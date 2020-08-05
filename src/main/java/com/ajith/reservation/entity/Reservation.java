@@ -2,6 +2,7 @@ package com.ajith.reservation.entity;
 
 import java.sql.Timestamp;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -9,12 +10,15 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "RESERVATION")
 public class Reservation extends AbstractEntity {
+	@Column(name="CHECKED_IN")
 	private Integer checkedIn;
+	@Column(name="NUMBER_OF_BAGS")
 	private Integer numberOfBags;
 	@OneToOne
 	private Passenger passenger;
 	@OneToOne
 	private Flight flight;
+	@Column(name="CREATED")
 	private Timestamp created;
 
 	public Integer getCheckedIn() {
