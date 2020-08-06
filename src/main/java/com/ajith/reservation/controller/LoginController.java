@@ -20,16 +20,13 @@ public class LoginController {
 		return "/login/login";
 	}
 
-	@RequestMapping("/validateLogin")
+	@RequestMapping("/login")
 	public String login(@RequestParam("email") String email, @RequestParam("password") String password, ModelMap modelMap) {
-		System.out.println("inside login - "+email);
 		User user = userRepo.findByEmail(email);
 		if(null!=user && user.getPassword().equals(password)) {
-			System.out.println("correct password");
 			return "login/findFlights";
 		}
 		else {
-			System.out.println("wrong password");
 			modelMap.addAttribute("msg", "Invalid login. Please try again!!!");
 			return "login/login";
 		}
