@@ -1,5 +1,7 @@
 package com.ajith.reservation.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -11,9 +13,12 @@ import com.ajith.reservation.entity.Flight;
 import com.ajith.reservation.entity.Reservation;
 import com.ajith.reservation.repo.FlightRepository;
 import com.ajith.reservation.services.ReservationServiceImpl;
+import com.sun.tools.sjavac.Log;
 
 @Controller
 public class ReservationController {
+	
+	Logger log=LoggerFactory.getLogger(ReservationController.class);
 	@Autowired
 	FlightRepository flightRepo;
 	
@@ -22,6 +27,7 @@ public class ReservationController {
 	
 	@RequestMapping("showCompleteReservationForm")
 	public String showCompleteReservation(@RequestParam("flightId") String flightId ,ModelMap modelMap  ) {
+		log.info("complete Reservation for flight id");
 		System.out.println("debug flightid - "+flightId);
 		Flight flight=flightRepo.findByFlightNumber(flightId);
 		System.out.println("debug flightid - "+flightId);
